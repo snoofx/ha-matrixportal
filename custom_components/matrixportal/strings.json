@@ -1,0 +1,106 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Add MatrixPortal",
+        "description": "Home Assistant usually finds displays by itself. Use this only if it does not.",
+        "data": {
+          "host": "IP address or hostname"
+        }
+      },
+      "confirm": {
+        "title": "MatrixPortal",
+        "description": "Add display **{name}** ({host})? Home Assistant then delivers entities and events, the token on the device is deleted.",
+        "data": {
+          "pair_password": "Display password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Display not reachable. Does it run firmware 1.0 or later?"
+    },
+    "abort": {
+      "already_configured": "Display is already set up.",
+      "not_matrixportal": "Not a MatrixPortal display.",
+      "paired_elsewhere": "The display is paired with another Home Assistant. Unpair it in its web UI under System (or hold UP and DOWN at power-on), then add it again.",
+      "cannot_connect": "Display not reachable."
+    }
+  },
+  "entity": {
+    "light": {
+      "display": {
+        "name": "Display"
+      }
+    },
+    "select": {
+      "design": {
+        "name": "Design",
+        "state": {
+          "klassisch": "Classic",
+          "kompakt": "Compact",
+          "fokus": "Focus"
+        }
+      },
+      "header": {
+        "name": "Header",
+        "state": {
+          "datum": "Date",
+          "entities": "Entities instead of date",
+          "wechselnd": "Rotating"
+        }
+      }
+    },
+    "switch": {
+      "demo": {
+        "name": "Demo mode"
+      }
+    },
+    "number": {
+      "pac_every": {
+        "name": "Pac-Man interval"
+      }
+    },
+    "button": {
+      "restart": {
+        "name": "Restart"
+      },
+      "identify": {
+        "name": "Identify"
+      },
+      "pacman": {
+        "name": "Pac-Man now"
+      },
+      "week": {
+        "name": "Show week overview"
+      },
+      "refresh": {
+        "name": "Reload calendars"
+      }
+    },
+    "binary_sensor": {
+      "connected": {
+        "name": "Connection"
+      }
+    },
+    "sensor": {
+      "rssi": {
+        "name": "WiFi signal"
+      },
+      "events": {
+        "name": "Events today"
+      },
+      "started": {
+        "name": "Started"
+      },
+      "heap": {
+        "name": "Free memory"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      }
+    }
+  }
+}
