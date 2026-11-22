@@ -23,6 +23,8 @@ FORWARDED_ATTRIBUTES = ("unit_of_measurement", "current_temperature", "hvac_acti
 # Runtime settings of the display (entities, "set" message), same names as in the firmware.
 DESIGNS = ("klassisch", "kompakt", "fokus")
 HEADER_MODES = ("datum", "entities", "wechselnd")
+# LED strip at A2 (config.h STRIP_MAX)
+STRIP_MAX = 300
 COMMANDS = ("restart", "pacman", "week", "week_off", "identify", "refresh")
 
 PASSWORD_LENGTH = 16

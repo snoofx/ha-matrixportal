@@ -41,12 +41,20 @@ const MENU = '<svg viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,
 const DESIGN_LABEL = {klassisch: 'Klassisch', kompakt: 'Kompakt', fokus: 'Fokus'};
 const HEADER_LABEL = {datum: 'Datum', entities: 'Entities statt Datum', wechselnd: 'Wechselnd'};
 
+function writable(obj, key) {
+  for (let o = obj; o; o = Object.getPrototypeOf(o)) {
+    const d = Object.getOwnPropertyDescriptor(o, key);
+    if (d) return d.writable || !!d.set;
+  }
+  return false;
+}
+
 function el(tag, props = {}, ...children) {
   const e = document.createElement(tag);
   for (const [k, v] of Object.entries(props)) {
     if (k === 'dataset') Object.assign(e.dataset, v);
-    else if (k in e) e[k] = v;
-    else e.setAttribute(k, v);
+    else if (k in e && writable(e, k)) e[k] = v;
+    else e.setAttribute(k, v);  // z.B. input.list: nur Getter, geht nur als Attribut
   }
   e.append(...children.filter(c => c !== null && c !== undefined));
   return e;

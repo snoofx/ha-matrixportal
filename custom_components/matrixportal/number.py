@@ -1,4 +1,4 @@
-"""Pac-Man interval in minutes (0 = off)."""
+"""Pac-Man interval in minutes (0 = off) and number of pixels of the LED strip."""
 
 from __future__ import annotations
 
@@ -8,13 +8,14 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import MatrixConfigEntry
+from .const import STRIP_MAX
 from .entity import MatrixEntity
 
 
 async def async_setup_entry(
     hass: HomeAssistant, entry: MatrixConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback
 ) -> None:
-    async_add_entities([PacInterval(entry.runtime_data, "pac_every")])
+    async_add_entities([PacInterval(entry.runtime_data, "pac_every"), StripCount(entry.runtime_data, "strip_count")])
 
 
 class PacInterval(MatrixEntity, NumberEntity):
@@ -32,3 +33,23 @@ class PacInterval(MatrixEntity, NumberEntity):
 
     async def async_set_native_value(self, value: float) -> None:
         self._link.set(pac_every=int(value))
+
+
+class StripCount(MatrixEntity, NumberEntity):
+    _attr_entity_category = EntityCategory.CONFIG
+    _attr_icon = "mdi:led-strip-variant"
+    _attr_native_min_value = 0
+    _attr_native_max_value = STRIP_MAX
+    _attr_native_step = 1
+    _attr_mode = NumberMode.BOX
+
+    @property
+    def available(self) -> bool:
+        return super().available and "strip_count" in self._status
+
+    @property
+    def native_value(self) -> float | None:
+        return self._status.get("strip_count")
+
+    async def async_set_native_value(self, value: float) -> None:
+        self._link.set(strip_count=int(value))

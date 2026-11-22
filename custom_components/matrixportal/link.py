@@ -472,13 +472,15 @@ class DisplayLink:
 
     @callback
     def set(self, **values: Any) -> bool:
-        """Runtime settings: on, brightness, demo, design, header, pac_every."""
+        """Runtime settings: on, brightness, demo, design, header, pac_every, strip_*."""
         if not self.connected:
             return False
         self._send({"type": "set", **values})
         self.status.update(values)  # optimistic, the display confirms with its status
         if values.get("brightness"):
             self.status["on"] = True
+        if values.get("strip_brightness") or values.get("strip_rgb"):
+            self.status["strip_on"] = values.get("strip_on", True)
         self._changed()
         return True
 

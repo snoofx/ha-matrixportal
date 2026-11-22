@@ -31,6 +31,9 @@
     "light": {
       "display": {
         "name": "Display"
+      },
+      "strip": {
+        "name": "LED strip"
       }
     },
     "select": {
@@ -59,6 +62,9 @@
     "number": {
       "pac_every": {
         "name": "Pac-Man interval"
+      },
+      "strip_count": {
+        "name": "LED strip pixels"
       }
     },
     "button": {
