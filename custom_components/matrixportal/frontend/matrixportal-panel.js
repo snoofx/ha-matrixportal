@@ -40,6 +40,9 @@ code{background:var(--secondary-background-color);padding:1px 5px;border-radius:
 const MENU = '<svg viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg>';
 const DESIGN_LABEL = {klassisch: 'Klassisch', kompakt: 'Kompakt', fokus: 'Fokus'};
 const HEADER_LABEL = {datum: 'Datum', entities: 'Entities statt Datum', wechselnd: 'Wechselnd'};
+const VIEW_LABEL = {dashboard: 'Dashboard', effekt: 'Effekt', effekt_tage: 'Effekt + Wochentage',
+  effekt_laufband: 'Effekt + Laufband', effekt_liste: 'Effekt + Entities'};
+const EFFECT_LABEL = {plasma: 'Plasma', feuer: 'Feuer', regen: 'Zeichenregen', sterne: 'Sterne', polarlicht: 'Polarlicht', lava: 'Lava', leben: 'Leben', ozean: 'Ozean', glut: 'Kaminglut', gluehwuermchen: 'Glühwürmchen', schnee: 'Schneefall', feuerwerk: 'Feuerwerk', tunnel: 'Tunnel', regenbogen: 'Regenbogen-Wellen', kaleidoskop: 'Kaleidoskop', aquarium: 'Aquarium', lavalampe: 'Lavalampe', baelle: 'Bälle', sanduhr: 'Sanduhr', gewitter: 'Gewitter', labyrinth: 'Labyrinth', wetter: 'Wetter (passend zu HA)', solar: 'Solar (folgt der Leistung)', wechselnd: 'Wechselnd'};
 
 function writable(obj, key) {
   for (let o = obj; o; o = Object.getPrototypeOf(o)) {
@@ -179,6 +182,10 @@ class MatrixPortalPanel extends HTMLElement {
     design.onchange = () => set({design: design.value});
     const header = el('select', {}, ...self._data.headers.map(v => el('option', {value: v, textContent: HEADER_LABEL[v] || v})));
     header.onchange = () => set({header: header.value});
+    const view = el('select', {}, ...(self._data.views || []).map(v => el('option', {value: v, textContent: VIEW_LABEL[v] || v})));
+    view.onchange = () => set({view: view.value});
+    const effect = el('select', {}, ...(self._data.effects || []).map(v => el('option', {value: v, textContent: EFFECT_LABEL[v] || v})));
+    effect.onchange = () => set({effect: effect.value});
     const demo = el('input', {type: 'checkbox'});
     demo.onchange = () => set({demo: demo.checked});
     const pac = el('input', {type: 'number', min: 0, max: 1440, style: 'width:90px'});
@@ -188,6 +195,8 @@ class MatrixPortalPanel extends HTMLElement {
       el('label', {}, 'Helligkeit', bright),
       el('label', {}, 'Design', design),
       el('label', {}, 'Kopfzeile', header),
+      el('label', {}, 'Ansicht', view),
+      el('label', {}, 'Effekt', effect),
       el('label', {}, 'Pac-Man alle X Minuten (0 = aus)', pac),
       el('label', {className: 'check'}, demo, 'Demo-Modus (nicht gespeichert)'));
     const actions = el('div', {className: 'row', style: 'margin-top:10px'},
@@ -195,6 +204,7 @@ class MatrixPortalPanel extends HTMLElement {
       el('button', {className: 'b', textContent: 'Wochenübersicht', onclick: () => cmd('week')}),
       el('button', {className: 'b', textContent: 'Identifizieren', onclick: () => cmd('identify', 'Das Display zeigt 15 s Name und IP.')}),
       el('button', {className: 'b', textContent: 'Kalender neu laden', onclick: () => cmd('refresh', 'Kalender werden neu geladen.')}),
+      el('button', {className: 'b', textContent: 'Klingel testen', onclick: () => cmd('doorbell', 'Das Display zeigt 30 s die Klingel.')}),
       el('button', {className: 'b', textContent: 'Neustart', onclick: () => confirm('Display neu starten?') && cmd('restart', 'Startet neu ...')}));
 
     // Konfiguration
@@ -311,7 +321,9 @@ class MatrixPortalPanel extends HTMLElement {
         pwBtn.textContent = pwShown ? 'verbergen' : 'zeigen';
         onBtn.classList.toggle('on', st.on === true);
         offBtn.classList.toggle('on', st.on === false);
-        for (const e of [onBtn, offBtn, bright, design, header, demo, pac, ...actions.children]) e.disabled = !d.connected;
+        for (const e of [onBtn, offBtn, bright, design, header, view, effect, demo, pac, ...actions.children]) e.disabled = !d.connected;
+        if (!busy(view) && st.view) view.value = st.view;
+        if (!busy(effect) && st.effect) effect.value = st.effect;
         if (!busy(bright) && st.brightness) bright.value = st.brightness;
         if (!busy(design) && st.design) design.value = st.design;
         if (!busy(header) && st.header) header.value = st.header;

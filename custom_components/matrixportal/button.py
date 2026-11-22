@@ -1,4 +1,4 @@
-"""Buttons: restart, identify, Pac-Man, week overview, reload calendars."""
+"""Buttons: restart, identify, Pac-Man, week overview, reload calendars, doorbell."""
 
 from __future__ import annotations
 
@@ -18,6 +18,8 @@ BUTTONS = (
     ("pacman", "pacman", None, None, "mdi:pac-man"),
     ("week", "week", None, None, "mdi:calendar-week"),
     ("refresh", "refresh", None, EntityCategory.DIAGNOSTIC, "mdi:calendar-refresh"),
+    # For automations: doorbell rings -> press. Shown 30 s, a key on the display ends it.
+    ("doorbell", "doorbell", None, None, "mdi:doorbell"),
 )
 
 

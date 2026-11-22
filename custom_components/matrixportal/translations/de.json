@@ -52,11 +52,71 @@
           "entities": "Entities statt Datum",
           "wechselnd": "Wechselnd"
         }
+      },
+      "view": {
+        "name": "Ansicht",
+        "state": {
+          "dashboard": "Dashboard",
+          "effekt": "Effekt",
+          "effekt_tage": "Effekt + Wochentage",
+          "effekt_laufband": "Effekt + Laufband",
+          "effekt_liste": "Effekt + Entities"
+        }
+      },
+      "effect": {
+        "name": "Effekt",
+        "state": {
+          "plasma": "Plasma",
+          "feuer": "Feuer",
+          "regen": "Zeichenregen",
+          "sterne": "Sterne",
+          "polarlicht": "Polarlicht",
+          "lava": "Lava",
+          "leben": "Leben",
+          "ozean": "Ozean",
+          "glut": "Kaminglut",
+          "gluehwuermchen": "Glühwürmchen",
+          "schnee": "Schneefall",
+          "feuerwerk": "Feuerwerk",
+          "tunnel": "Tunnel",
+          "regenbogen": "Regenbogen-Wellen",
+          "kaleidoskop": "Kaleidoskop",
+          "aquarium": "Aquarium",
+          "lavalampe": "Lavalampe",
+          "baelle": "Bälle",
+          "sanduhr": "Sanduhr",
+          "gewitter": "Gewitter",
+          "labyrinth": "Labyrinth",
+          "wetter": "Wetter (passend zu HA)",
+          "solar": "Solar (folgt der Leistung)",
+          "wechselnd": "Wechselnd"
+        }
+      },
+      "saver": {
+        "name": "Bildschirmschoner",
+        "state": {
+          "aus": "Aus",
+          "zeitfenster": "Zeitfenster",
+          "keine_termine": "Keine Termine mehr",
+          "beides": "Zeitfenster oder keine Termine"
+        }
+      },
+      "saver_view": {
+        "name": "Bildschirmschoner-Ansicht",
+        "state": {
+          "effekt": "Effekt",
+          "effekt_tage": "Effekt + Wochentage",
+          "effekt_laufband": "Effekt + Laufband",
+          "effekt_liste": "Effekt + Entities"
+        }
       }
     },
     "switch": {
       "demo": {
         "name": "Demo-Modus"
+      },
+      "strip_follow": {
+        "name": "LED-Strip folgt Effekt"
       }
     },
     "number": {
@@ -82,6 +142,9 @@
       },
       "refresh": {
         "name": "Kalender neu laden"
+      },
+      "doorbell": {
+        "name": "Klingel"
       }
     },
     "binary_sensor": {
@@ -106,6 +169,14 @@
     "update": {
       "firmware": {
         "name": "Firmware"
+      }
+    },
+    "time": {
+      "saver_from": {
+        "name": "Bildschirmschoner ab"
+      },
+      "saver_to": {
+        "name": "Bildschirmschoner bis"
       }
     }
   }

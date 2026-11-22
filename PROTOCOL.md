@@ -52,7 +52,7 @@ HA                                    Display
 | `type` | Felder |
 |---|---|
 | `hello` | `proto`, `paired`, `mode` (`ha`/`local`), `nonce`, `id` (MAC, 12 Hex), `name`, `version`, `rev`, `protected`, `config`, `watch` |
-| `status` | `on`, `brightness`, `demo`, `design`, `header`, `pac_every`, `strip_on`, `strip_brightness`, `strip_rgb` ([r, g, b]), `strip_count`, `rssi`, `heap`, `uptime`, `ip`, `calendar` (1 ok, -1 Fehler, 2 keiner, 0 noch nicht), `events` |
+| `status` | `on`, `brightness`, `demo`, `design`, `header`, `pac_every`, `strip_on`, `strip_brightness`, `strip_rgb` ([r, g, b]), `strip_count`, `strip_follow`, `view`, `effect`, `saver`, `saver_view`, `saver_from`, `saver_to` (`HH:MM`), `rssi`, `heap`, `uptime`, `ip`, `calendar` (1 ok, -1 Fehler, 2 keiner, 0 noch nicht), `events` |
 | `get_calendar` | `id`, `calendars: [{entity, start, end}]` (ISO mit Offset; Arbeitskalender 7 Tage, sonst 1 Tag) |
 | `paired`, `config_saved`, `renamed`, `unpaired` | – |
 | `config_error`, `pair_error` | `message` |
@@ -70,10 +70,13 @@ HA                                    Display
 | `name` | `name` | Hostname (`a-z 0-9 -`, max. 31), Neustart |
 | `welcome` | `ha_version`, `proto` | Ab jetzt laufen Zustände, Befehle, Kalender |
 | `event` | `event.a` | Zustände wie `subscribe_entities`: `{"<entity>": {"s": state, "a": {...}}}` |
-| `set` | `on`, `brightness` (1–255), `demo`, `design`, `header`, `pac_every` (0–1440), `strip_on`, `strip_brightness` (1–255), `strip_rgb` ([r, g, b]), `strip_count` (0–300), alle optional | Laufzeit-Einstellungen, gespeichert (außer `demo`). `strip_*` ist neu in Protokoll 1, ältere Firmware ignoriert es. `strip_brightness`/`strip_rgb` schalten den Strip ein, `strip_on` hat Vorrang |
-| `command` | `command`: `restart`, `pacman`, `week`, `week_off`, `identify`, `refresh` | Aktion |
+| `set` | `on`, `brightness` (1–255), `demo`, `design`, `header`, `pac_every` (0–1440), `strip_on`, `strip_brightness` (1–255), `strip_rgb` ([r, g, b]), `strip_count` (0–300), `strip_follow`, `view`, `effect`, `saver`, `saver_view`, `saver_from`, `saver_to` (`HH:MM`), alle optional | Laufzeit-Einstellungen, gespeichert (außer `demo`). `strip_*`, `view`, `effect`, `saver*` sind später dazugekommen, ältere Firmware ignoriert sie (HA zeigt die Entities dann als nicht verfügbar). `strip_brightness`/`strip_rgb` schalten den Strip ein, `strip_on` hat Vorrang |
+| `command` | `command`: `restart`, `pacman`, `week`, `week_off`, `identify`, `refresh`, `doorbell`, `doorbell_off` | Aktion |
 | `calendar` | `id`, `entity`, `ok`, `events: [{summary, location, start, end}]` | Termine eines Kalenders |
 | `calendar_end` | `id`, `ok` | Anfrage fertig, Display übernimmt die Liste |
+
+Werte: `view` = `dashboard`, `effekt`, `effekt_tage`, `effekt_laufband`, `effekt_liste`
+(`saver_view` ohne `dashboard`); `effect` = `plasma`, `feuer`, `regen`, `sterne`, `polarlicht`, `lava`, `leben`, `ozean`, `glut`, `gluehwuermchen`, `schnee`, `feuerwerk`, `tunnel`, `regenbogen`, `kaleidoskop`, `aquarium`, `lavalampe`, `baelle`, `sanduhr`, `gewitter`, `labyrinth`, `wetter`, `solar`, `wechselnd`; `saver` = `aus`, `zeitfenster`, `keine_termine`, `beides`.
 
 Weitergereichte Attribute: `unit_of_measurement`, `current_temperature`, `hvac_action`,
 `temperature`. Beim Wetter zusätzlich `forecast_high`, `forecast_low` (heute, aus

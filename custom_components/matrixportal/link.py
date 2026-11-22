@@ -472,7 +472,7 @@ class DisplayLink:
 
     @callback
     def set(self, **values: Any) -> bool:
-        """Runtime settings: on, brightness, demo, design, header, pac_every, strip_*."""
+        """Runtime settings: on, brightness, demo, design, header, pac_every, strip_*, view, effect, saver*."""
         if not self.connected:
             return False
         self._send({"type": "set", **values})

@@ -25,7 +25,35 @@ DESIGNS = ("klassisch", "kompakt", "fokus")
 HEADER_MODES = ("datum", "entities", "wechselnd")
 # LED strip at A2 (config.h STRIP_MAX)
 STRIP_MAX = 300
-COMMANDS = ("restart", "pacman", "week", "week_off", "identify", "refresh")
+VIEWS = ("dashboard", "effekt", "effekt_tage", "effekt_laufband", "effekt_liste")
+EFFECTS = (
+    "plasma",
+    "feuer",
+    "regen",
+    "sterne",
+    "polarlicht",
+    "lava",
+    "leben",
+    "ozean",
+    "glut",
+    "gluehwuermchen",
+    "schnee",
+    "feuerwerk",
+    "tunnel",
+    "regenbogen",
+    "kaleidoskop",
+    "aquarium",
+    "lavalampe",
+    "baelle",
+    "sanduhr",
+    "gewitter",
+    "labyrinth",
+    "wetter",
+    "solar",
+    "wechselnd",
+)
+SAVER_MODES = ("aus", "zeitfenster", "keine_termine", "beides")
+COMMANDS = ("restart", "pacman", "week", "week_off", "identify", "refresh", "doorbell", "doorbell_off")
 
 PASSWORD_LENGTH = 16
 

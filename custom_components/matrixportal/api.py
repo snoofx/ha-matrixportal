@@ -12,7 +12,7 @@ from homeassistant.components import panel_custom, websocket_api
 from homeassistant.components.http import StaticPathConfig
 from homeassistant.core import HomeAssistant, callback
 
-from .const import COMMANDS, DESIGNS, DOMAIN, HEADER_MODES, PANEL_COMPONENT, PANEL_URL_PATH, STATIC_URL
+from .const import COMMANDS, DESIGNS, DOMAIN, EFFECTS, HEADER_MODES, PANEL_COMPONENT, PANEL_URL_PATH, STATIC_URL, VIEWS
 from .link import DisplayLink, hostname
 from .store import ConfigError, DeviceStore, clean_config
 
@@ -106,6 +106,8 @@ async def ws_devices(hass: HomeAssistant, connection: websocket_api.ActiveConnec
             "firmware": manifest["version"] if manifest else None,
             "designs": list(DESIGNS),
             "headers": list(HEADER_MODES),
+            "views": list(VIEWS),
+            "effects": list(EFFECTS),
         },
     )
 
@@ -140,6 +142,8 @@ def ws_save_config(hass: HomeAssistant, connection: websocket_api.ActiveConnecti
         vol.Optional("design"): vol.In(DESIGNS),
         vol.Optional("header"): vol.In(HEADER_MODES),
         vol.Optional("pac_every"): vol.All(int, vol.Range(min=0, max=1440)),
+        vol.Optional("view"): vol.In(VIEWS),
+        vol.Optional("effect"): vol.In(EFFECTS),
     }
 )
 @websocket_api.require_admin

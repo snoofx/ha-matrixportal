@@ -52,11 +52,71 @@
           "entities": "Entities instead of date",
           "wechselnd": "Rotating"
         }
+      },
+      "view": {
+        "name": "View",
+        "state": {
+          "dashboard": "Dashboard",
+          "effekt": "Effect",
+          "effekt_tage": "Effect + weekdays",
+          "effekt_laufband": "Effect + ticker",
+          "effekt_liste": "Effect + entities"
+        }
+      },
+      "effect": {
+        "name": "Effect",
+        "state": {
+          "plasma": "Plasma",
+          "feuer": "Fire",
+          "regen": "Code rain",
+          "sterne": "Stars",
+          "polarlicht": "Aurora",
+          "lava": "Lava",
+          "leben": "Life",
+          "ozean": "Ocean",
+          "glut": "Embers",
+          "gluehwuermchen": "Fireflies",
+          "schnee": "Snowfall",
+          "feuerwerk": "Fireworks",
+          "tunnel": "Tunnel",
+          "regenbogen": "Rainbow waves",
+          "kaleidoskop": "Kaleidoscope",
+          "aquarium": "Aquarium",
+          "lavalampe": "Lava lamp",
+          "baelle": "Bouncing balls",
+          "sanduhr": "Hourglass",
+          "gewitter": "Thunderstorm",
+          "labyrinth": "Maze",
+          "wetter": "Weather (matches HA)",
+          "solar": "Solar (follows output)",
+          "wechselnd": "Rotating"
+        }
+      },
+      "saver": {
+        "name": "Screensaver",
+        "state": {
+          "aus": "Off",
+          "zeitfenster": "Time window",
+          "keine_termine": "No more events",
+          "beides": "Time window or no events"
+        }
+      },
+      "saver_view": {
+        "name": "Screensaver view",
+        "state": {
+          "effekt": "Effect",
+          "effekt_tage": "Effect + weekdays",
+          "effekt_laufband": "Effect + ticker",
+          "effekt_liste": "Effect + entities"
+        }
       }
     },
     "switch": {
       "demo": {
         "name": "Demo mode"
+      },
+      "strip_follow": {
+        "name": "LED strip follows effect"
       }
     },
     "number": {
@@ -82,6 +142,9 @@
       },
       "refresh": {
         "name": "Reload calendars"
+      },
+      "doorbell": {
+        "name": "Doorbell"
       }
     },
     "binary_sensor": {
@@ -106,6 +169,14 @@
     "update": {
       "firmware": {
         "name": "Firmware"
+      }
+    },
+    "time": {
+      "saver_from": {
+        "name": "Screensaver from"
+      },
+      "saver_to": {
+        "name": "Screensaver until"
       }
     }
   }
