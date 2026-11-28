@@ -1,4 +1,4 @@
-"""Design, header, view, effect and screensaver of the display, switchable live."""
+"""Design, header, view, effect, screensaver, doorbell style and strip color order, switchable live."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import MatrixConfigEntry
-from .const import DESIGNS, EFFECTS, HEADER_MODES, SAVER_MODES, VIEWS
+from .const import DESIGNS, DOORBELL_STYLES, EFFECTS, HEADER_MODES, SAVER_MODES, STRIP_ORDERS, VIEWS
 from .entity import MatrixEntity
 from .link import DisplayLink
 
@@ -25,6 +25,8 @@ async def async_setup_entry(
             DisplaySelect(link, "effect", list(EFFECTS), "mdi:auto-fix", config=False),
             DisplaySelect(link, "saver", list(SAVER_MODES), "mdi:sleep"),
             DisplaySelect(link, "saver_view", list(VIEWS[1:]), "mdi:television-ambient-light"),
+            DisplaySelect(link, "doorbell_style", list(DOORBELL_STYLES), "mdi:doorbell"),
+            DisplaySelect(link, "strip_order", list(STRIP_ORDERS), "mdi:palette-swatch-variant"),
         ]
     )
 

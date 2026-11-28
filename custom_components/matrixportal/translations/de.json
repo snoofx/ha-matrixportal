@@ -109,6 +109,25 @@
           "effekt_laufband": "Effekt + Laufband",
           "effekt_liste": "Effekt + Entities"
         }
+      },
+      "doorbell_style": {
+        "name": "Klingel-Anzeige",
+        "state": {
+          "wellen": "Wellen (Vollbild)",
+          "rahmen": "Blinkender Rahmen",
+          "blitz": "3x hell blinken"
+        }
+      },
+      "strip_order": {
+        "name": "LED-Strip Farbreihenfolge",
+        "state": {
+          "rgb": "RGB",
+          "grb": "GRB",
+          "brg": "BRG",
+          "rbg": "RBG",
+          "gbr": "GBR",
+          "bgr": "BGR"
+        }
       }
     },
     "switch": {
@@ -125,6 +144,9 @@
       },
       "strip_count": {
         "name": "LED-Strip Pixel"
+      },
+      "doorbell_sec": {
+        "name": "Klingel-Dauer"
       }
     },
     "button": {

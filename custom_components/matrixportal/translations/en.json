@@ -109,6 +109,25 @@
           "effekt_laufband": "Effect + ticker",
           "effekt_liste": "Effect + entities"
         }
+      },
+      "doorbell_style": {
+        "name": "Doorbell display",
+        "state": {
+          "wellen": "Waves (full screen)",
+          "rahmen": "Blinking frame",
+          "blitz": "Flash 3 times"
+        }
+      },
+      "strip_order": {
+        "name": "LED strip color order",
+        "state": {
+          "rgb": "RGB",
+          "grb": "GRB",
+          "brg": "BRG",
+          "rbg": "RBG",
+          "gbr": "GBR",
+          "bgr": "BGR"
+        }
       }
     },
     "switch": {
@@ -125,6 +144,9 @@
       },
       "strip_count": {
         "name": "LED strip pixels"
+      },
+      "doorbell_sec": {
+        "name": "Doorbell duration"
       }
     },
     "button": {

@@ -25,6 +25,9 @@ DESIGNS = ("klassisch", "kompakt", "fokus")
 HEADER_MODES = ("datum", "entities", "wechselnd")
 # LED strip at A2 (config.h STRIP_MAX)
 STRIP_MAX = 300
+# Doorbell: waves full screen, blinking frame over the display, or a short bright flash
+DOORBELL_STYLES = ("wellen", "rahmen", "blitz")
+STRIP_ORDERS = ("rgb", "grb", "brg", "rbg", "gbr", "bgr")
 VIEWS = ("dashboard", "effekt", "effekt_tage", "effekt_laufband", "effekt_liste")
 EFFECTS = (
     "plasma",
